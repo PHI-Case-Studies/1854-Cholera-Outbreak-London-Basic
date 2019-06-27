@@ -1,2 +1,1 @@
-conda install -y pandas folium osmnx=0.9*
-jupyter trust NB00-Cholera-Case-Study-Prepare-Environment.ipynb
+conda install -y pandas=0.24* folium=0.9.1
