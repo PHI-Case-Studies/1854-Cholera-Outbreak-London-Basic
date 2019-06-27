@@ -1,2 +1,0 @@
-pandas
-folium==0.9.1
