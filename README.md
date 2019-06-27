@@ -1,4 +1,4 @@
-# Case Study 1: 1854-Cholera-Outbreak-London
+# Case Study 1: 1854-Cholera-Outbreak-London (Basic)
 
 [![Binder](https://beta.mybinder.org/badge.svg)](https://beta.mybinder.org/v2/gh/PHI-Case-Studies/1854-Cholera-Outbreak-London/master)
 
