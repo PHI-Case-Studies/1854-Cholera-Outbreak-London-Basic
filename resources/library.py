@@ -6,7 +6,7 @@ def style_notebook():
     return HTML(style)
 
 def show_video_file(url,width,height):
-    return HTML('<video width="900" height="600" controls autoplay><source src="'+url+'"</video>')
+    return HTML('<video width="900" height="600" controls ><source src="'+url+'"</video>')
 
 def show_youtube(url, width, height):
     return IFrame(url,width,height)
