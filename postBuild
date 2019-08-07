@@ -1,1 +1,1 @@
-conda install -y -c conda-forge folium=0.9.1 jinja2=2.10* pandas=0.24.2
+conda install -y -c conda-forge folium=0.10* jinja2=2.10* pandas=0.25*
