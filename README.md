@@ -4,9 +4,11 @@ This repository was created for use by CDC programs to collaborate on public hea
 
 ## About this Digital Case Study
 
-### TLDR;
+### Interact with the Case Study
 
-This is a **digital case study** built with [Jupyter Notebook](https://jupyter.org/) and Docker about the 1854 Cholera Outbreak in London. Dr. John Snow carried out the investigation of this outbreak. Click on the [![Binder](https://beta.mybinder.org/badge.svg)](https://beta.mybinder.org/v2/gh/PHI-Case-Studies/1854-Cholera-Outbreak-London-Basic/master) or [![Azure Notebooks](https://notebooks.azure.com/launch.png)](https://notebooks.azure.com/import/gh/PHI-Case-Studies/1854-Cholera-Outbreak-London-Basic) link above. Wait a few minutes for the binder or Azure notebook service to complete its setup and launch. Enjoy the rest of the story after you launch the case study.
+[![Binder](https://beta.mybinder.org/badge.svg)](https://beta.mybinder.org/v2/gh/PHI-Case-Studies/1854-Cholera-Outbreak-London-Basic/master) [![Azure Notebooks](https://notebooks.azure.com/launch.png)](https://notebooks.azure.com/import/gh/PHI-Case-Studies/1854-Cholera-Outbreak-London-Basic) 
+
+This is a **digital case study** built with [Jupyter Notebook](https://jupyter.org/) and Docker about the 1854 Cholera Outbreak in London. Dr. John Snow carried out the investigation of this outbreak. Click on the Binder or Azure link above to interact with this digital case study. Wait a few minutes for the binder or Azure notebook service to complete its setup and launch. Enjoy the rest of the story after you launch the case study.
 
 ### BinderHub and Microsoft Azure Notebook
 #### Using BinderHub
