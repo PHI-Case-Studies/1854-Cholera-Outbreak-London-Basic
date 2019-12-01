@@ -1,9 +1,11 @@
 from IPython.display import HTML, IFrame
-import warnings
+import warnings, os
 
 def style_notebook():
-    style = open("./resources/style.css", "r").read()
-    return HTML(style)
+    if os.getenv('JUPYTER_UI') is not None:
+        if os.environ['JUPYTER_UI'] != '/lab':
+            style = open("./resources/style.css", "r").read()
+            return HTML(style)        
 
 def show_video_file(url,width,height):
     return HTML('<video width="900" height="600" controls ><source src="'+url+'"</video>')
