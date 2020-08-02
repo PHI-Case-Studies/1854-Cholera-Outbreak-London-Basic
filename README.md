@@ -6,17 +6,12 @@ This repository was created for use by CDC programs to collaborate on public hea
 
 ### Interact with the Case Study
 
-[![Binder](https://beta.mybinder.org/badge.svg)](https://beta.mybinder.org/v2/gh/PHI-Case-Studies/1854-Cholera-Outbreak-London-Basic/master) [![Azure Notebooks](https://notebooks.azure.com/launch.png)](https://notebooks.azure.com/import/gh/PHI-Case-Studies/1854-Cholera-Outbreak-London-Basic) 
+[![Binder](https://beta.mybinder.org/badge.svg)](https://beta.mybinder.org/v2/gh/PHI-Case-Studies/1854-Cholera-Outbreak-London-Basic/master)
 
 This is a **digital case study** built with [Jupyter Notebook](https://jupyter.org/) and Docker about the 1854 Cholera Outbreak in London. Dr. John Snow carried out the investigation of this outbreak. Click on the Binder or Azure link above to interact with this digital case study. Wait a few minutes for the binder or Azure notebook service to complete its setup and launch. Enjoy the rest of the story after you launch the case study.
 
-### BinderHub and Microsoft Azure Notebook
-#### Using BinderHub
+### Using BinderHub
 After clicking on the "launch binder" link above, wait for a few minutes to BinderHub build the Docker container.
-
-#### Using Microsoft Azure Notebook
-This service seems to be continuously being improved by Microsoft so notebooks launch process might break anytime. After launching a notebook or terminal, you may see a popup window that looks like the one below. It means MS Azure has not completely built the Jupyter Notebook container yet. When the popup window to disappears, this means all the packages have been installed.
-![](./images/azurenb-wait.png)
 
 ### Learn More About
 1. [Project Jupyter](https://jupyter.org/)
