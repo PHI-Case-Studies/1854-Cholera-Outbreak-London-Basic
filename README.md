@@ -16,7 +16,6 @@ After clicking on the "launch binder" link above, wait for a few minutes to Bind
 ### Learn More About
 1. [Project Jupyter](https://jupyter.org/)
 2. [BinderHub technology - repo2docker](https://repo2docker.readthedocs.io/en/latest/)
-3. [Microsoft Azure Notebooks](https://notebooks.azure.com/) and [QuickStart Documentation](https://docs.microsoft.com/en-us/azure/notebooks/)
 
 ## Public Domain
 This repository constitutes a work of the United States Government and is not
