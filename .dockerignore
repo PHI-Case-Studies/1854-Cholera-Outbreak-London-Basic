@@ -1,0 +1,5 @@
+*.pyc
+__pycache__/
+.DS_Store
+outputs/*.html  # If you don’t want to include pre-generated HTML
+
