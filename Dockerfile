@@ -17,5 +17,4 @@ COPY . .
 EXPOSE 8888
 
 # Start Jupyter Notebook
-CMD ["start-notebook.sh"]
-
+CMD ["start-notebook.sh", "--NotebookApp.token=''", "--NotebookApp.password=''"]
