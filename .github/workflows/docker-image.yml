@@ -28,4 +28,4 @@ jobs:
       with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/1854-Cholera-Outbreak-London-Basic:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/Cholera-Outbreak-London-Basic:latest
