@@ -1,0 +1,63 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Log in to Docker Hub
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # Get the latest version number from Docker Hub
+    - name: Get Latest Version
+      id: get_version
+      run: |
+        LATEST_VERSION=$(curl -s "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic/tags" \
+        | jq -r '.results[].name' | grep 'version-' | sort -V | tail -n 1 | sed 's/version-//')
+
+        if [[ -z "$LATEST_VERSION" ]]; then
+          NEW_VERSION=1
+        else
+          NEW_VERSION=$((LATEST_VERSION + 1))
+        fi
+
+        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+    # Pull the current latest image (if exists)
+    - name: Pull the Last Latest Image
+      continue-on-error: true
+      run: |
+        docker pull ${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic:latest || echo "No previous latest image found"
+
+    # Tag the previous latest image with a version number
+    - name: Tag Previous Latest Image
+      run: |
+        docker tag ${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic:latest \
+        ${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic:version-${{ env.NEW_VERSION }}
+
+    # Push the versioned image
+    - name: Push Versioned Image
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic:version-${{ env.NEW_VERSION }}
+
+    # Build and push the new latest image
+    - name: Build and Push Latest
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic:latest
