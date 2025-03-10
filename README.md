@@ -17,6 +17,10 @@ After clicking on the "launch binder" link above, wait for a few minutes to Bind
 1. [Project Jupyter](https://jupyter.org/)
 2. [BinderHub technology - repo2docker](https://repo2docker.readthedocs.io/en/latest/)
 
+### Using Docker
+
+See Docker README.
+
 ## Public Domain
 This repository constitutes a work of the United States Government and is not
 subject to domestic copyright protection under 17 USC § 105. This repository is in
