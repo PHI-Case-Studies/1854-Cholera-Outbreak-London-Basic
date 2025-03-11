@@ -22,8 +22,31 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Get the latest version number from Docker Hub
+      # Check if "latest" tag exists in Docker Hub
+      - name: Check if "latest" tag exists
+        id: check_latest
+        run: |
+          TAG_EXISTS=$(curl -s "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic/tags" \
+          | jq -r '.results[].name' | grep -w "latest" || true)
+
+          if [[ -z "$TAG_EXISTS" ]]; then
+            echo "LATEST_TAG_EXISTS=false" >> $GITHUB_ENV
+          else
+            echo "LATEST_TAG_EXISTS=true" >> $GITHUB_ENV
+          fi
+
+      # If "latest" tag does not exist, build and push a new image directly
+      - name: Build and Push New Image (No Previous Latest)
+        if: env.LATEST_TAG_EXISTS == 'false'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic:latest
+
+      # If "latest" tag exists, follow the normal versioning steps
       - name: Get Latest Version
+        if: env.LATEST_TAG_EXISTS == 'true'
         id: get_version
         run: |
           LATEST_VERSION=$(curl -s "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic/tags" \
@@ -37,14 +60,16 @@ jobs:
 
           echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
 
-      # Pull the current latest image (if exists)
+      # Pull the current latest image (if it exists)
       - name: Pull the Last Latest Image
+        if: env.LATEST_TAG_EXISTS == 'true'
         continue-on-error: true
         run: |
           docker pull ${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic:latest || echo "No previous latest image found"
 
       # Tag the previous latest image with a version number
       - name: Tag Previous Latest Image
+        if: env.LATEST_TAG_EXISTS == 'true'
         run: |
           if docker image inspect ${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic:latest > /dev/null 2>&1; then
              docker tag ${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic:latest \
@@ -55,11 +80,13 @@ jobs:
 
       # Push the versioned image
       - name: Push Versioned Image
+        if: env.LATEST_TAG_EXISTS == 'true'
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/cholera-outbreak-london-basic:version-${{ env.NEW_VERSION }}
 
       # Build and push the new latest image
       - name: Build and Push Latest
+        if: env.LATEST_TAG_EXISTS == 'true'
         uses: docker/build-push-action@v5
         with:
           context: .
