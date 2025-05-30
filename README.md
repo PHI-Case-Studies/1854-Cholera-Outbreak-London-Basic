@@ -49,8 +49,3 @@ to this project, you grant a world-wide, royalty-free, perpetual, irrevocable,
 non-exclusive, transferable license to all users under the terms of the
 [Apache Software License v2](http://www.apache.org/licenses/LICENSE-2.0.html) or
 later.
-
-## Records
-This repository is not a source of government records, but is a copy to increase
-collaboration and collaborative potential. All government records will be
-published through the [CDC web site](http://www.cdc.gov).
