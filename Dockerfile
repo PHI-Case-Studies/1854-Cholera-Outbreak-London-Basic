@@ -1,20 +1,20 @@
-# Use an official Jupyter Notebook base image
 FROM jupyter/base-notebook
 
-# Set the working directory inside the container
-WORKDIR /home/work
+USER root
+WORKDIR /home/jovyan/work
 
-# Copy the environment file to install dependencies
-COPY environment.yml .
+COPY environment.yml /tmp/environment.yml
 
-# Install dependencies via conda
-RUN conda env update --file environment.yml && conda clean --all -y
+RUN conda env create -f /tmp/environment.yml && \
+    conda clean --all -y && \
+    chown -R jovyan:users /home/jovyan
 
-# Copy the entire project folder into the container
-COPY . .
+USER jovyan
 
-# Expose the default Jupyter Notebook port
+RUN conda run -n basic python -m ipykernel install --user --name=basic --display-name "Python (basic)" 
+
+COPY --chown=jovyan:users . .
+
 EXPOSE 8888
 
-# Start Jupyter Notebook
-CMD ["start-notebook.sh", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+CMD ["conda", "run", "-n", "basic", "start-notebook.sh", "--NotebookApp.token=", "--NotebookApp.password="]
