@@ -41,7 +41,7 @@ This should display a confirmation message that Docker is working.
 ## 3. Pull the `1854-Cholera-Outbreak-London-Basic` Docker Image
 Now, pull the latest version of the **Cholera Outbreak London** image from Docker Hub:
 ```bash
-docker pull your-dockerhub-username/1854-cholera-outbreak-london-basic:latest
+docker pull <todo_dockerhub_uname>/cholera-outbreak-london-basic:latest
 ```
 Replace `your-dockerhub-username` with the actual Docker Hub username where the image is hosted.
 
@@ -50,7 +50,7 @@ Replace `your-dockerhub-username` with the actual Docker Hub username where the 
 ## 4. Run the Docker Image
 To start the container and run the application, use:
 ```bash
-docker run -d -p 8888:8888 your-dockerhub-username/1854-cholera-outbreak-london-basic:latest
+docker run -d -p 8888:8888 <todo_dockerhub_uname>/cholera-outbreak-london-basic:latest
 ```
 - `-d` runs the container in the background.
 - `-p 8888:8888` maps the container’s port `8888` to your local machine’s port `8888`.
