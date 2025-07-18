@@ -5,16 +5,20 @@ WORKDIR /home/jovyan/work
 
 COPY environment.yml /tmp/environment.yml
 
-RUN conda env create -f /tmp/environment.yml && \
+# Use mamba for faster installs and install into base
+RUN conda install -y -c conda-forge mamba && \
+    mamba env update -n base -f /tmp/environment.yml && \
     conda clean --all -y && \
     chown -R jovyan:users /home/jovyan
 
 USER jovyan
 
-RUN conda run -n basic python -m ipykernel install --user --name=basic --display-name "Python (basic)" 
+# Install IPython kernel for base environment
+RUN python -m ipykernel install --user --name=python3 --display-name "Python (base)"
 
 COPY --chown=jovyan:users . .
 
 EXPOSE 8888
 
-CMD ["conda", "run", "-n", "basic", "start-notebook.sh", "--NotebookApp.token=", "--NotebookApp.password="]
+# Launch notebook in base environment
+CMD ["start-notebook.sh", "--NotebookApp.token=", "--NotebookApp.password="]
